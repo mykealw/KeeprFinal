@@ -15,6 +15,7 @@ namespace KeeprFinal.Models
         public int Views { get; set; }
         public int Kept { get; set; }
         public int Shares { get; set; }
+        public Profile Creator { get; set; }
     }
     public class VaultKeepViewModel : Keep
     {

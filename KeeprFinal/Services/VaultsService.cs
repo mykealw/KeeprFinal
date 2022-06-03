@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using KeeprFinal.Models;
 using KeeprFinal.Repositories;
 
 namespace KeeprFinal.Services
@@ -14,5 +11,24 @@ namespace KeeprFinal.Services
         {
             _repo = repo;
         }
+
+        //GETS
+
+
+
+
+        //Posts
+        internal Vault Create(Vault vaultData)
+        {
+            return _repo.Create(vaultData);
+        }
+
+
+
+        //puts
+
+
+
+        //deletes
     }
 }

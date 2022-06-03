@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using KeeprFinal.Models;
 
 namespace KeeprFinal.Repositories
 {
@@ -14,5 +12,25 @@ namespace KeeprFinal.Repositories
         {
             _db = db;
         }
+
+        //GETS
+
+
+
+
+        //Posts
+        internal Vault Create(Vault vaultData)
+        {
+           string sql = @" INSERT INTO vaults
+           ("
+        }
+
+
+        //Puts
+
+
+
+
+        //Deletes
     }
 }
