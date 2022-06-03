@@ -20,7 +20,20 @@ namespace KeeprFinal.Controllers
         }
 
         //GETS
-
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Vault>> GetById(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                Vault vault = _vs.GetById(id, userInfo?.Id);
+                return Ok(vault);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
         //POSTS
@@ -43,9 +56,38 @@ namespace KeeprFinal.Controllers
         }
 
 
-        //puts
-
+        //PUTS
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Vault>> Edit(int id, [FromBody] Vault vaultData)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                Vault updated = _vs.Edit(id, vaultData, userInfo);
+                return Ok(updated);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         //Deletes
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<String>> Delete(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                _vs.Delete(id, userInfo.Id);
+                return Ok("DELETED");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
