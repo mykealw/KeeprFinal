@@ -30,6 +30,15 @@ namespace KeeprFinal.Services
         }
 
 
+        private Vault GetById(int id)
+        {
+            Vault found = _repo.GetById(id);
+            if (found == null)
+            {
+                throw new Exception("Vault nto found");
+            }
+            return found;
+        }
 
         //Posts
         internal Vault Create(Vault vaultData)
@@ -56,16 +65,9 @@ namespace KeeprFinal.Services
             return this.GetById(original.Id);
         }
 
-        private Vault GetById(int id)
-        {
-            Vault found = _repo.GetById(id);
-            if (found == null)
-            {
-                throw new Exception("Vault nto found");
-            }
-            return found;
-        }
 
+
+        //deletes
         internal void Delete(int id, string userId)
         {
             Vault found = GetById(id);
@@ -76,7 +78,5 @@ namespace KeeprFinal.Services
             _repo.Delete(id);
         }
 
-
-        //deletes
     }
 }

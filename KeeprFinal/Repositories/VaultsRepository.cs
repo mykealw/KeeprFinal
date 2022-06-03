@@ -15,22 +15,6 @@ namespace KeeprFinal.Repositories
         }
 
         //GETS
-
-
-
-
-        //Posts
-        internal Vault Create(Vault vaultData)
-        {
-            string sql = @" INSERT INTO vaults
-           (name, description, isPrivate, creatorId)
-           VALUES
-           (@Name, @Description, @IsPrivate, @CreatorId);
-           SELECT LAST_INSERT_ID();";
-            vaultData.Id = _db.ExecuteScalar<int>(sql, vaultData);
-            return vaultData;
-        }
-
         internal Vault GetById(int id)
         {
             string sql = @"
@@ -49,6 +33,22 @@ namespace KeeprFinal.Repositories
 
 
 
+        //Posts
+        internal Vault Create(Vault vaultData)
+        {
+            string sql = @" INSERT INTO vaults
+           (name, description, isPrivate, creatorId)
+           VALUES
+           (@Name, @Description, @IsPrivate, @CreatorId);
+           SELECT LAST_INSERT_ID();";
+            vaultData.Id = _db.ExecuteScalar<int>(sql, vaultData);
+            return vaultData;
+        }
+
+
+
+
+
         //Puts
         internal void Edit(Vault original)
         {
@@ -62,15 +62,15 @@ namespace KeeprFinal.Repositories
             _db.Execute(sql, original);
         }
 
+
+
+        //Deletes
+
         internal void Delete(int id)
         {
             string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
         }
 
-
-
-
-        //Deletes
     }
 }
