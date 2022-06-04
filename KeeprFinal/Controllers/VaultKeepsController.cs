@@ -44,5 +44,21 @@ namespace KeeprFinal.Controllers
 
 
         //DELETES
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<String>> Delete(int id)
+        {
+           try
+           {
+               Profile profile = await HttpContext.GetUserInfoAsync<Account>();
+               _vks.Delete(id, profile.Id);
+               return Ok("Deleted");
+           }
+           catch(Exception e)
+           {
+               return BadRequest(e.Message);
+           }
+        }
+
     }
 }

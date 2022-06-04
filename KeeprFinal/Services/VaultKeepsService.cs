@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using KeeprFinal.Models;
 using KeeprFinal.Repositories;
 
@@ -20,15 +19,15 @@ namespace KeeprFinal.Services
 
 
         //GET
-        // internal List<Keep> GetKeepsByVault(int id, string userId)
-        // {
-        //     Vault found = _vsR.GetById(id);
-        //     if (found.IsPrivate == true && found.CreatorId!= userId)
-        //     {
-        //         throw new Exception("private vault");
-        //     }
-        //     return _repo.GetKeepsByVault(id);
-        // }
+        private VaultKeep GetById(int id)
+        {
+            VaultKeep found = _repo.GetById(id);
+            if (found == null)
+            {
+                throw new Exception("VaultKeep no existy");
+            }
+            return found;
+        }
 
 
         //POST
@@ -39,11 +38,22 @@ namespace KeeprFinal.Services
 
 
 
-
         //PUT
 
 
 
         //Delete
+        internal void Delete(int id, string userId)
+        {
+            VaultKeep found = GetById(id);
+            if (found.CreatorId != userId)
+            {
+                throw new Exception("not yours to delete");
+
+            }
+            _repo.Delete(id);
+        }
+
+
     }
 }
