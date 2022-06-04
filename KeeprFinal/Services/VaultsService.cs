@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using KeeprFinal.Models;
 using KeeprFinal.Repositories;
 
@@ -7,11 +8,14 @@ namespace KeeprFinal.Services
     public class VaultsService
     {
         private readonly VaultsRepository _repo;
+        private readonly VaultKeepsRepository _vkR;
 
-        public VaultsService(VaultsRepository repo)
+        public VaultsService(VaultsRepository repo, VaultKeepsRepository vkR)
         {
             _repo = repo;
+            _vkR = vkR;
         }
+
 
         //GETS
         public Vault GetById(int id, string userId)
@@ -40,6 +44,18 @@ namespace KeeprFinal.Services
             return found;
         }
 
+        // gets relationships
+
+        internal List<VaultKeepViewModel> GetKeepsByVault(int id, string userId)
+        {
+            Vault found = _repo.GetById(id);
+            if (found.IsPrivate == true && found.CreatorId != userId)
+            {
+                throw new Exception("private vault");
+            }
+            return _vkR.GetKeepsByVault(id);
+        }
+
         //Posts
         internal Vault Create(Vault vaultData)
         {
@@ -64,6 +80,8 @@ namespace KeeprFinal.Services
             _repo.Edit(original);
             return this.GetById(original.Id);
         }
+
+
 
 
 

@@ -27,16 +27,18 @@ namespace KeeprFinal.Repositories
             return vaultKeepData;
         }
 
-        internal List<Keep> GetKeepsByVault(int id)
+        internal List<VaultKeepViewModel> GetKeepsByVault(int id)
         {
             string sql = @"
             SELECT
-            p.*,
-             vk.* 
-            from vaultKeeps vk
-            JOIN profiles p ON vk.creatorId = p.id
+            k.*,
+             vk.id AS VaultKeepId, 
+            p.*
+            FROM vaultKeeps vk
+            JOIN keeps k ON k.id = vk.keepId
+            JOIN profiles p ON p.id = k.creatorId
             WHERE vk.vaultId = @id;";
-            return _db.Query<Profile, Keep, Keep>(sql, (profile, vaultKeep) => { vaultKeep.Creator = profile; return vaultKeep; }, new { id }).ToList();
+            return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (VaultKeep, profile) => { VaultKeep.Creator = profile; return VaultKeep; }, new { id }).ToList();
         }
     }
 }

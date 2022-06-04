@@ -42,11 +42,12 @@ namespace KeeprFinal.Controllers
 
         // GET RELATIONSHIPS
         [HttpGet("{id}/keeps")]
-        public ActionResult<List<Keep>> GetKeepsByVault(int id)
+        public async Task<ActionResult<List<VaultKeepViewModel>>> GetKeepsByVault(int id)
         {
             try
             {
-                List<Keep> keeps = _vks.GetKeepsByVault(id);
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<VaultKeepViewModel> keeps = _vs.GetKeepsByVault(id, userInfo?.Id);
                 return Ok(keeps);
             }
             catch (Exception e)
