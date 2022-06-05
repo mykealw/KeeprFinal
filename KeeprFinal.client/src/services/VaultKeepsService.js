@@ -5,7 +5,7 @@ import { api } from './AxiosService'
 
 class VaultKeepsService {
     //gets
-    async getAllVaultKeeps(vaultId) {
+    async getAllVaultsKeeps(vaultId) {
         const res = await api.get('api/vaults/' + vaultId + '/keeps')
         logger.log(res.data, "here are the keeps")
         AppState.keeps = res.data
@@ -24,8 +24,11 @@ class VaultKeepsService {
 
 
     //deletes
-
-
+    async deleteVaultKeep(vaultKeepId) {
+        const res = await api.delete('api/vaultkeeps' + vaultKeepId)
+        logger.log(res.data, "deleted vaultkeep")
+        AppState.vaultKeeps.filter(vk => vk.id != vaultKeepId)
+    }
 }
 
 export const vaultKeepsService = new VaultKeepsService()
