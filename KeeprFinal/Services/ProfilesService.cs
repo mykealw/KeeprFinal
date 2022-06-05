@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using KeeprFinal.Models;
 using KeeprFinal.Repositories;
 
@@ -22,6 +23,19 @@ namespace KeeprFinal.Services
                 throw new Exception("bad profile id");
             }
             return found;
+        }
+
+        //relationships
+        internal List<Keep> GetProfileKeeps(string id)
+        {
+            Profile found = this.GetById(id);
+            return _repo.GetProfileKeeps(found.Id);
+        }
+
+        internal List<Vault> GetProfileVaults(string id)
+        {
+            Profile found = this.GetById(id);
+            return _repo.GetProfileVaults(found.Id);
         }
 
         //posts
