@@ -15,13 +15,13 @@ const routes = [
     path: '/profiles/:id',
     name: 'Profile',
     component: loadPage('ProfilePage')
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: loadPage('AccountPage'),
+    beforeEnter: authGuard
   }
-  // {
-  //   path: '/account',
-  //   name: 'Account',
-  //   component: loadPage('AccountPage'),
-  //   beforeEnter: authGuard
-  // }
 ]
 
 export const router = createRouter({
