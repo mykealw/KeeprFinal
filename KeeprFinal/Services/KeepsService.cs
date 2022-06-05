@@ -20,13 +20,20 @@ namespace KeeprFinal.Services
             return _repo.GetAll();
         }
 
-        internal Keep GetById(int id)
+        internal Keep GetById(int id, string userId)
         {
             Keep keep = _repo.GetById(id);
             if (keep == null)
             {
                 throw new Exception("bad Keep Id");
             }
+            if (keep.CreatorId != userId)
+            {
+                keep.Views++;
+                _repo.Edit(keep);
+            }
+            
+
             return keep;
         }
         //posts
@@ -37,10 +44,10 @@ namespace KeeprFinal.Services
 
 
         //puts
-        internal Keep Edit(int id, Keep keepData, Account userinfo)
+        internal Keep Edit(int id, Keep keepData, string userId)
         {
-            Keep original = GetById(id);
-            if (original.CreatorId != userinfo.Id)
+            Keep original = _repo.GetById(id);
+            if (original.CreatorId != userId)
             {
                 throw new Exception("THIS IS NOT YOURS TO EDIT!");
             }
@@ -51,7 +58,7 @@ namespace KeeprFinal.Services
             original.Kept = keepData.Kept > 0 ? keepData.Kept : original.Kept;
             original.Shares = keepData.Shares > 0 ? keepData.Shares : original.Shares;
             _repo.Edit(original);
-            return this.GetById(original.Id);
+            return _repo.GetById(original.Id);
         }
 
        
@@ -59,7 +66,7 @@ namespace KeeprFinal.Services
         //delete 
         internal void Delete(int id, string userId)
         {
-            Keep keep = GetById(id);
+            Keep keep = _repo.GetById(id);
             if (keep.CreatorId != userId)
             {
                 throw new Exception("NOT YOURS TO DELETE");

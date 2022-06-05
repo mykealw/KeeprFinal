@@ -34,11 +34,12 @@ namespace KeeprFinal.Controllers
             }
         }
         [HttpGet("{id}")]
-        public ActionResult<Keep> GetById(int id)
+        public async Task<ActionResult<Keep>> GetById(int id)
         {
             try
             {
-                Keep keep = _ks.GetById(id);
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                Keep keep = _ks.GetById(id, userInfo?.Id);
                 return Ok(keep);
             }
             catch (Exception e)
@@ -75,7 +76,7 @@ namespace KeeprFinal.Controllers
             try
             {
                 Account userinfo = await HttpContext.GetUserInfoAsync<Account>();
-                Keep updated = _ks.Edit(id, keepData, userinfo);
+                Keep updated = _ks.Edit(id, keepData, userinfo.Id);
 
                 return Ok(updated);
             }
