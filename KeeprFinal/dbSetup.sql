@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS profiles(
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     name varchar(255) COMMENT 'User Name',
-    email varchar(255) COMMENT 'User Email',
+   
     picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS keeps(
     id int NOT NULL AUTO_INCREMENT primary key,
     creatorId VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
-        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     description TEXT,
     img VARCHAR(255) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS vaults(
     id int NOT NULL AUTO_INCREMENT primary key,
     creatorId VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
-        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     description TEXT,
     isPrivate TINYINT DEFAULT 0,
@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS vaultKeeps(
     vaultId int NOT NULL,
     keepId int NOT NULL,
     FOREIGN KEY (creatorId) REFERENCES profiles(id) ON DELETE CASCADE,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
     FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
