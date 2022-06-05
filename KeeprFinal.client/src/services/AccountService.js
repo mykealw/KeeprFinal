@@ -13,7 +13,7 @@ class AccountService {
     }
   }
 
-  async EditAccount() {
+  async EditAccount(body) {
     try {
       const res = await api.put('/account', body)
       logger.log(res.data, "updated account&profile")
