@@ -54,8 +54,8 @@ namespace KeeprFinal.Services
             original.Name = keepData.Name ?? original.Name;
             original.Description = keepData.Description ?? original.Description;
             original.Img = keepData.Img ?? original.Img;
-            original.Views = keepData.Views > 0 ? keepData.Views : original.Views;
-            original.Kept = keepData.Kept > 0 ? keepData.Kept : original.Kept;
+            // original.Views = keepData.Views > 0 ? keepData.Views : original.Views;
+            // original.Kept = keepData.Kept > 0 ? keepData.Kept : original.Kept;
             original.Shares = keepData.Shares > 0 ? keepData.Shares : original.Shares;
             _repo.Edit(original);
             return _repo.GetById(original.Id);
