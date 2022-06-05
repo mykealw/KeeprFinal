@@ -32,9 +32,13 @@ namespace KeeprFinal.Services
             return _repo.GetProfileKeeps(found.Id);
         }
 
-        internal List<Vault> GetProfileVaults(string id)
+        internal List<Vault> GetProfileVaults(string id, string userId)
         {
             Profile found = this.GetById(id);
+            if (found.Id != userId)
+            {
+                return _repo.GetPublicVaults(found.Id);
+            }
             return _repo.GetProfileVaults(found.Id);
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace KeeprFinal.Repositories
            JOIN profiles p ON p.id = k.creatorId
            WHERE k.creatorId = @id;";
             return _db.Query<Keep, Profile, Keep>(sql, (keep, p) => { keep.Creator = p; return keep; }, new { id }).ToList();
+        }
+
+        internal List<Vault> GetPublicVaults(string id)
+        {
+            throw new NotImplementedException();
         }
 
         internal List<Vault> GetProfileVaults(string id)
