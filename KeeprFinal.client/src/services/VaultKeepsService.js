@@ -17,11 +17,9 @@ class VaultKeepsService {
         const res = await api.post('api/vaultkeeps', newVaultKeep)
         logger.log(res.data, "vaultkeep made")
         AppState.vaultKeeps.unshift(res.data)
-
     }
 
     //puts
-
 
     //deletes
     async deleteVaultKeep(vaultKeepId) {
