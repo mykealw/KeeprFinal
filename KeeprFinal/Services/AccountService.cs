@@ -24,6 +24,7 @@ namespace KeeprFinal.Services
             Account profile = _repo.GetById(userInfo.Id);
             if (profile == null)
             {
+                _repo.CreateProfile(userInfo);
                 return _repo.Create(userInfo);
             }
             return profile;

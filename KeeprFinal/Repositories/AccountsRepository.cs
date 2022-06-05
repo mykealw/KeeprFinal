@@ -1,6 +1,7 @@
 using System.Data;
 using KeeprFinal.Models;
 using Dapper;
+using System;
 
 namespace KeeprFinal.Repositories
 {
@@ -34,6 +35,16 @@ namespace KeeprFinal.Repositories
               (@Name, @Picture, @Email, @Id)";
             _db.Execute(sql, newAccount);
             return newAccount;
+        }
+
+        internal void CreateProfile(Profile userInfo)
+        {
+             string sql = @"
+            INSERT INTO profiles
+              (name, picture, id)
+            VALUES
+              (@Name, @Picture, @Id)";
+            _db.Execute(sql, userInfo);
         }
 
         internal Account Edit(Account update)
