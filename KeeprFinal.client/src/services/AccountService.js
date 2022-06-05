@@ -24,7 +24,6 @@ class AccountService {
       logger.log(error);
       Pop.toast(error.message, "error");
     }
-
   }
 
   //posts

@@ -9,6 +9,7 @@ class VaultKeepsService {
         const res = await api.get('api/vaults/' + vaultId + '/keeps')
         logger.log(res.data, "here are the keeps")
         AppState.keeps = res.data
+        //more logic for private?? tbd
     }
 
     //posts
