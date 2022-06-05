@@ -31,8 +31,13 @@ namespace KeeprFinal.Services
 
 
         //POST
-        internal VaultKeep Create(VaultKeep vaultKeepData)
+        internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
         {
+            Vault found = _vsR.GetById(vaultKeepData.VaultId);
+            if (found.CreatorId != userId)
+            {
+                throw new Exception("not yours?? log in?? how did you get this error?");
+            }
             return _repo.Create(vaultKeepData);
         }
 
