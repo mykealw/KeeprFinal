@@ -30,7 +30,7 @@ export default {
   justify-content: space-between !important;
 }
 .ts {
-  text-shadow: 2px 2px 0 #141414, -1px -1px 0 #141414, 1px -1px 0 #141414,
+  text-shadow: 3px 3px 0px #141414, -1px -1px 0 #141414, 1px -1px 0 #141414,
     -1px 1px 0 #141414, 1px 1px 0 #141414;
 }
 .bg {
@@ -52,36 +52,48 @@ export default {
   object-fit: cover;
   width: 100%;
 }
-.masonry-container {
-  columns: 4;
-  // column-gap: 10px;
-  div {
-    break-inside: avoid;
-  }
+.circle {
+  border-radius: 50%;
 }
+
 // mobile
 @media only screen and (max-width: 767px) {
   .rp2 {
-    left: 1em;
+    justify-content: space-around;
     bottom: 1em;
+    align-items: center;
   }
   .ri2 {
-    bottom: 1em;
-    right: 1em;
+    height: 2em;
+    max-width: 2em;
+    object-fit: cover;
+  }
+  .masonry-container2 {
+    columns: 2;
+    // column-gap: 10px;
+    div {
+      break-inside: avoid;
+    }
   }
 }
 // regular size screen
 @media only screen and (min-width: 767.98px) {
   .rp1 {
-    left: 1em;
+    justify-content: space-around;
     bottom: 1em;
-    height: 50px;
+    align-items: center;
   }
   .ri1 {
-    bottom: 1em;
-    right: 1em;
-    height: 100px;
-    
+    height: 5em;
+    max-width: 5em;
+    object-fit: cover;
+  }
+  .masonry-container1 {
+    columns: 4;
+    // column-gap: 10px;
+    div {
+      break-inside: avoid;
+    }
   }
 }
 </style>

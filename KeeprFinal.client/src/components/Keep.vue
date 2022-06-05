@@ -2,14 +2,17 @@
   <div class="Keep p-2">
     <div class="position-relative">
       <img class="object-fit rounded" :src="keep.img" alt="" />
-      <h3 class="position-absolute ts text-light rp1 rp2">{{ keep.name }}</h3>
-      <img class="position-absolute ri1 ri2" :src="keep.creator?.picture" alt="">
+      <div class="position-absolute w-100 d-flex rp1 rp2">
+        <h4 class="ts text-light me-2">{{ keep.name }}</h4>
+        <img class="circle ri1 ri2" @click="goToProfile()" :src="keep.creator?.picture" alt="" />
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
+import { useRouter } from 'vue-router'
 export default {
   props: {
     keep: {
@@ -17,8 +20,13 @@ export default {
       required: true
     }
   },
-  setup() {
-    return {}
+  setup(props) {
+      const router = useRouter()
+    return {
+        goToProfile(){
+
+        }
+    }
   }
 }
 </script>
