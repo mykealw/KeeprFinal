@@ -47,6 +47,17 @@ namespace KeeprFinal.Repositories
             _db.Execute(sql, userInfo);
         }
 
+        internal void EditProfile(Account original)
+        {
+            string sql = @"
+            UPDATE profiles
+            SET 
+              name = @Name,
+              picture = @Picture
+            WHERE id = @Id;";
+            _db.Execute(sql, original);
+        }
+
         internal Account Edit(Account update)
         {
             string sql = @"

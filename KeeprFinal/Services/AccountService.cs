@@ -35,6 +35,7 @@ namespace KeeprFinal.Services
             Account original = GetProfileByEmail(userEmail);
             original.Name = editData.Name.Length > 0 ? editData.Name : original.Name;
             original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
+            _repo.EditProfile(original);
             return _repo.Edit(original);
         }
     }
