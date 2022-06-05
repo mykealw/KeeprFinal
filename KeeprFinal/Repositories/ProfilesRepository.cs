@@ -42,7 +42,14 @@ namespace KeeprFinal.Repositories
 
         internal List<Vault> GetPublicVaults(string id)
         {
-            throw new NotImplementedException();
+                   string sql = @"
+            SELECT
+            v.*,
+            p.*
+            FROM vaults v
+            JOIN profiles p ON p.id = v.creatorId
+            WHERE v.creatorId = @id AND isPrivate = false;";
+            return _db.Query<Vault, Profile, Vault>(sql, (vault, p) => { vault.Creator = p; return vault; }, new { id }).ToList();
         }
 
         internal List<Vault> GetProfileVaults(string id)
