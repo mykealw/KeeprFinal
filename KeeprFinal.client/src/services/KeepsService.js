@@ -23,6 +23,7 @@ class KeepsService {
         const res = await api.post('api/keeps/', newKeep)
         logger.log(res.data, "keep made")
         AppState.keeps.unshift(res.data)
+        AppState.activeKeep = res.data
     }
 
     //puts
