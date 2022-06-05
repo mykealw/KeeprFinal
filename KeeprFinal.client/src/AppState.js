@@ -9,5 +9,6 @@ export const AppState = reactive({
   activeKeep: {},
   myKeeps: [],
   myVaults:[],
+  vaultKeeps: [],
   activeVault: {}
 })
