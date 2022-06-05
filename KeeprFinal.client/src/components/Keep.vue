@@ -4,7 +4,12 @@
       <img class="object-fit rounded" :src="keep.img" alt="" />
       <div class="position-absolute w-100 d-flex rp1 rp2">
         <h4 class="ts text-light me-2">{{ keep.name }}</h4>
-        <img class="circle ri1 ri2" @click="goToProfile()" :src="keep.creator?.picture" alt="" />
+        <img
+          class="circle ri1 ri2"
+          @click="goToProfile()"
+          :src="keep.creator?.picture"
+          alt=""
+        />
       </div>
     </div>
   </div>
@@ -21,11 +26,11 @@ export default {
     }
   },
   setup(props) {
-      const router = useRouter()
+    const router = useRouter()
     return {
-        goToProfile(){
-
-        }
+      goToProfile() {
+        router.push({ name: 'Profile', params: { id: props.keep.creatorId } })
+      }
     }
   }
 }

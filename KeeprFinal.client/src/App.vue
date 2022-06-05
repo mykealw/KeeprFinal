@@ -1,8 +1,8 @@
-<template>
+<template >
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg">
     <router-view />
   </main>
   <footer></footer>
@@ -34,7 +34,7 @@ export default {
     -1px 1px 0 #141414, 1px 1px 0 #141414;
 }
 .bg {
-  background-color: beige;
+  background-color: rgb(245, 245, 232);
 }
 .zz {
   z-index: 1111;
@@ -68,6 +68,12 @@ export default {
     max-width: 2em;
     object-fit: cover;
   }
+  .pp2 {
+    object-fit: cover;
+    max-height: 35vh;
+    width: 100%;
+
+  }
   .masonry-container2 {
     columns: 2;
     // column-gap: 10px;
@@ -87,6 +93,11 @@ export default {
     height: 5em;
     max-width: 5em;
     object-fit: cover;
+  }
+  .pp1 {
+    object-fit: cover;
+    max-height: 35vh;
+    width: 100%;
   }
   .masonry-container1 {
     columns: 4;

@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS vaults(
     creatorId VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+    img VARCHAR(255) DEFAULT "http://thiscatdoesnotexist.com",
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     description TEXT,
     isPrivate TINYINT DEFAULT 0,
