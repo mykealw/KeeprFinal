@@ -16,7 +16,6 @@ namespace KeeprFinal.Services
             _vkR = vkR;
         }
 
-
         //GETS
         public Vault GetById(int id, string userId)
         {
@@ -30,9 +29,12 @@ namespace KeeprFinal.Services
                 throw new Exception("you don't have access to this vault!");
             }
             return found;
-
         }
 
+        internal List<Vault> GetMyVaults(string id)
+        {
+            return _repo.GetMyVaults(id);
+        }
 
         private Vault GetById(int id)
         {
@@ -45,7 +47,6 @@ namespace KeeprFinal.Services
         }
 
         // gets relationships
-
         internal List<VaultKeepViewModel> GetKeepsByVault(int id, string userId)
         {
             Vault found = _repo.GetById(id);
@@ -56,21 +57,11 @@ namespace KeeprFinal.Services
             return _vkR.GetKeepsByVault(id);
         }
 
-        internal List<Vault> GetMyVaults(string id)
-        {
-            return _repo.GetMyVaults(id);
-        }
-
-
-
         //Posts
         internal Vault Create(Vault vaultData)
         {
             return _repo.Create(vaultData);
         }
-
-
-
 
         //puts
         internal Vault Edit(int id, Vault vaultData, Account userInfo)
@@ -88,10 +79,6 @@ namespace KeeprFinal.Services
             return this.GetById(original.Id);
         }
 
-
-
-
-
         //deletes
         internal void Delete(int id, string userId)
         {
@@ -102,6 +89,5 @@ namespace KeeprFinal.Services
             }
             _repo.Delete(id);
         }
-
     }
 }

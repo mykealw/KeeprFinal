@@ -20,6 +20,7 @@ namespace KeeprFinal.Controllers
             _accts = accts;
             _ps = ps;
         }
+
         //GETS
         [HttpGet("{id}")]
         public ActionResult<Profile> GetById(string id)
@@ -64,12 +65,10 @@ namespace KeeprFinal.Controllers
                return BadRequest(e.Message);
            }
         }
+
         //Posts
 
-
-
         //puts
-
 
         //Deletes
     }

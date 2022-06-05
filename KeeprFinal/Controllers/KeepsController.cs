@@ -19,6 +19,7 @@ namespace KeeprFinal.Controllers
         {
             _ks = ks;
         }
+
         //Gets
         [HttpGet]
         public ActionResult<List<Keep>> GetAll()
@@ -33,6 +34,7 @@ namespace KeeprFinal.Controllers
                 return BadRequest(e.Message);
             }
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Keep>> GetById(int id)
         {
@@ -67,7 +69,6 @@ namespace KeeprFinal.Controllers
             }
         }
 
-
         //PUTS
         [HttpPut("{id}")]
         [Authorize]
@@ -86,9 +87,7 @@ namespace KeeprFinal.Controllers
             }
         }
 
-
         //DELETES
-
         [HttpDelete("{id}")]
         [Authorize]
         public async Task<ActionResult<String>> Delete(int id)

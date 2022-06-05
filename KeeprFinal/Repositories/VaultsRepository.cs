@@ -53,10 +53,6 @@ namespace KeeprFinal.Repositories
             return vaultData;
         }
 
-
-
-
-
         //Puts
         internal void Edit(Vault original)
         {
@@ -70,16 +66,11 @@ namespace KeeprFinal.Repositories
             _db.Execute(sql, original);
         }
 
-
-
         //Deletes
-
         internal void Delete(int id)
         {
             string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
         }
-
-
     }
 }

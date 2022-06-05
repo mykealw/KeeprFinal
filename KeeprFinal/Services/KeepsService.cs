@@ -32,16 +32,14 @@ namespace KeeprFinal.Services
                 keep.Views++;
                 _repo.Edit(keep);
             }
-            
-
             return keep;
         }
+
         //posts
         internal Keep Create(Keep keepData)
         {
             return _repo.Create(keepData);
         }
-
 
         //puts
         internal Keep Edit(int id, Keep keepData, string userId)
@@ -60,8 +58,6 @@ namespace KeeprFinal.Services
             _repo.Edit(original);
             return _repo.GetById(original.Id);
         }
-
-       
 
         //delete 
         internal void Delete(int id, string userId)

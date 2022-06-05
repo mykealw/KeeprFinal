@@ -17,11 +17,6 @@ namespace KeeprFinal.Services
             _kr = kr;
         }
 
-
-
-
-
-
         //GET
         private VaultKeep GetById(int id)
         {
@@ -32,7 +27,6 @@ namespace KeeprFinal.Services
             }
             return found;
         }
-
 
         //POST
         internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
@@ -49,11 +43,7 @@ namespace KeeprFinal.Services
             return created;
         }
 
-
-
         //PUT
-
-
 
         //Delete
         internal void Delete(int id, string userId)
@@ -69,7 +59,5 @@ namespace KeeprFinal.Services
             _kr.Edit(foundKeep);
             _repo.Delete(id);
         }
-
-
     }
 }

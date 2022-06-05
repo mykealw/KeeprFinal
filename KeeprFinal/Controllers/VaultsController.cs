@@ -22,8 +22,6 @@ namespace KeeprFinal.Controllers
             _vks = vks;
         }
 
-
-
         //GETS self relationships under
         [HttpGet("{id}")]
         public async Task<ActionResult<Vault>> GetById(int id)
@@ -56,7 +54,6 @@ namespace KeeprFinal.Controllers
             }
         }
 
-
         //POSTS
         [HttpPost]
         [Authorize]
@@ -75,7 +72,6 @@ namespace KeeprFinal.Controllers
                 return BadRequest(e.Message);
             }
         }
-
 
         //PUTS
         [HttpPut("{id}")]

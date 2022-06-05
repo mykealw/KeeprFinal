@@ -43,7 +43,6 @@ namespace KeeprFinal.Repositories
             }, new { id }).FirstOrDefault();
         }
 
-
         //posts
         internal Keep Create(Keep keepData)
         {
@@ -70,7 +69,6 @@ namespace KeeprFinal.Repositories
                             WHERE id = @Id;";
             _db.Execute(sql, original);
         }
-
 
         //deletes
         internal void Delete(int id)

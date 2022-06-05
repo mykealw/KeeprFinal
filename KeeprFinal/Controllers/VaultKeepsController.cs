@@ -20,8 +20,6 @@ namespace KeeprFinal.Controllers
         }
         //GETS
 
-
-
         //POSTS
         [HttpPost]
         [Authorize]
@@ -49,8 +47,6 @@ namespace KeeprFinal.Controllers
             }
         }
 
-
-
         //DELETES
         [HttpDelete("{id}")]
         [Authorize]
@@ -67,6 +63,5 @@ namespace KeeprFinal.Controllers
                 return BadRequest(e.Message);
             }
         }
-
     }
 }

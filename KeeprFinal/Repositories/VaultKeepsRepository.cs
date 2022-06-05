@@ -14,6 +14,7 @@ namespace KeeprFinal.Repositories
         {
             _db = db;
         }
+
         //GET
         internal VaultKeep GetById(int id)
         {
@@ -41,8 +42,6 @@ namespace KeeprFinal.Repositories
             return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (VaultKeep, profile) => { VaultKeep.Creator = profile; return VaultKeep; }, new { id }).ToList();
         }
 
-
-
         //posts
         internal VaultKeep Create(VaultKeep vaultKeepData)
         {
@@ -58,17 +57,11 @@ namespace KeeprFinal.Repositories
 
         //puts
 
-
-
         //deletes
         internal void Delete(int id)
         {
             string sql = "DELETE FROM vaultKeeps WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
         }
-
-
-
-
     }
 }
