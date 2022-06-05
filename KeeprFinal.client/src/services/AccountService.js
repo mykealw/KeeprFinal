@@ -4,6 +4,7 @@ import Pop from '../utils/Pop.js'
 import { api } from './AxiosService'
 
 class AccountService {
+  //gets
   async getAccount() {
     try {
       const res = await api.get('/account')
@@ -13,6 +14,15 @@ class AccountService {
     }
   }
 
+  async getAccountVaults() {
+    const res = await api.get('/account/vaults')
+    logger.log(res.data, "my vaults")
+    AppState.myVaults = res.data
+  }
+
+  //posts
+
+  //puts
   async EditAccount(body) {
     try {
       const res = await api.put('/account', body)
@@ -24,6 +34,8 @@ class AccountService {
       Pop.toast(error.message, "error");
     }
   }
+
+  //deletes
 }
 
 export const accountService = new AccountService()
