@@ -56,6 +56,13 @@ namespace KeeprFinal.Services
             return _vkR.GetKeepsByVault(id);
         }
 
+        internal List<Vault> GetMyVaults(string id)
+        {
+            return _repo.GetMyVaults(id);
+        }
+
+
+
         //Posts
         internal Vault Create(Vault vaultData)
         {

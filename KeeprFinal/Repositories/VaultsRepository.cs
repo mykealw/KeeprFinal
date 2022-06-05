@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -31,7 +32,14 @@ namespace KeeprFinal.Repositories
             }, new { id }).FirstOrDefault();
         }
 
-
+        internal List<Vault> GetMyVaults(string id)
+        {
+            string sql = @"
+           SELECT *
+           FROM vaults 
+           WHERE vaults.creatorId = @id;";
+            return _db.Query<Vault>(sql, new { id }).ToList();
+        }
 
         //Posts
         internal Vault Create(Vault vaultData)
@@ -71,6 +79,7 @@ namespace KeeprFinal.Repositories
             string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
         }
+
 
     }
 }

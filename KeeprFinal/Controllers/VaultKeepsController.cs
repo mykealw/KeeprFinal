@@ -31,7 +31,7 @@ namespace KeeprFinal.Controllers
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 vaultKeepData.CreatorId = userInfo.Id;
-                // vaultKeepData.Creator = userInfo;
+                vaultKeepData.Creator = userInfo;
                 VaultKeep vaultKeep = _vks.Create(vaultKeepData);
                 return Ok(vaultKeep);
             }
