@@ -1,7 +1,15 @@
 <template>
-  <span class="navbar-text">
+  <span class="">
     <button
-      class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
+      class="
+        btn
+        selectable
+        text-light text-uppercase
+        my-2 my-lg-0
+        bg-secondary
+        bt
+        ts
+      "
       @click="login"
       v-if="!user.isAuthenticated"
     >
@@ -15,14 +23,14 @@
         aria-expanded="false"
         id="authDropdown"
       >
-        <div v-if="account.picture">
+        <div class="bg-secondary p-1 rounded" v-if="account.picture">
           <img
             :src="account.picture"
             alt="account photo"
             height="40"
             class="rounded"
           />
-          <span class="mx-3 text-success lighten-30">{{ account.name }}</span>
+          <span class="mx-3 text-light bt ts">{{ account.name }}</span>
         </div>
       </div>
       <div
