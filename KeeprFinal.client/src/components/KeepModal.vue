@@ -7,15 +7,17 @@
           class="btn-close position-absolute close-button right top"
           data-bs-dismiss="modal"
         ></button>
-        <div class="row">
+        <div class="row d-flex p-3">
           <div class="col-md-6">
-            <img v-if="keep?.picture" :src="keep.picture" :alt="keep.name" />
+            <img class="object-fit rounded" :src="keep.img" :alt="keep.name" />
           </div>
           <div class="col-md-6">
             <div class="row">
-              <h4 class="text-info">
-                <i class="mdi mdi-eye">{{ keep.view }}</i>
-                <i class="mdi mdi-chevron-right-box-outline">{{ keep.kept }}</i>
+              <h4 class="text-info text-center">
+                <i class="mdi mdi-eye">{{ keep?.views }} </i>
+                <i class="mdi mdi-chevron-right-box-outline"
+                  >{{ keep.kept }}
+                </i>
                 <i class="mdi mdi-share-variant">{{ keep.shares }}</i>
               </h4>
             </div>
@@ -29,25 +31,25 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <select
                   name="add to vault"
                   id="add to vault"
                   v-model="vaultId"
                   placeholder="add to vault"
                 >
-                  <option v-for="v in vaults" :key="v.id" :value="v.id">
+                  <option v-for="v in vault" :key="v.id" :value="v.id">
                     {{ v.name }}
                   </option>
                 </select>
-                <button class="btn btn-success" @click="addToVault()">
+                <button class="btn btn-success ms-2" @click="addToVault()">
                   add
                 </button>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-2">
                 <i
                   v-if="keep.creatorId == account.id"
-                  class="mdi mdi-delete mdi48"
+                  class="mdi mdi-delete mdi-36px"
                 ></i>
               </div>
               <div class="col-md-4 d-flex">
@@ -78,18 +80,20 @@ export default {
     keep: {
       type: Object,
       required: true
-    }
+    },
   },
   setup(props) {
-    const vaultId = ref(0)
+    const vaultId = ref({})
     return {
+      vault: computed(() => AppState.myVaults),
       keep: computed(() => AppState.activeKeep),
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       async addToVault() {
         try {
-          const newVK = { vaultId: vaultId.value, keepId: props.keep.id, creatorId: props.account.id }
-          await vaultKeepsService.createVaultKeep(newVk)
+          debugger
+          let newVK = { vaultId: vaultId.value, keepId: props.keep.id, creatorId: props.account.id }
+          await vaultKeepsService.createVaultKeep(newVk.value)
           vaultId.value = 0
         }
         catch (error) {
@@ -104,4 +108,10 @@ export default {
 
 
 <style lang="scss" scoped>
+.keep {
+  height: 50vh;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-size: cover;
+}
 </style>

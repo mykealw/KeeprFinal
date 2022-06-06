@@ -27,6 +27,9 @@
       </div>
     </div>
   </div>
+  <div  v-for="k in keeps" :key="k.id">
+    <KeepModal :keep="k" />
+  </div>
 </template>
 
 
@@ -57,6 +60,7 @@ export default {
       vault: computed(() => AppState.activeVault), profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
+      activeKeep: computed(() => AppState.activeKeep),
       async deleteVault(id) {
         try {
           await vaultsService.deleteVault(id)

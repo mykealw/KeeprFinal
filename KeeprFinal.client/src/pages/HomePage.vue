@@ -6,6 +6,9 @@
       </div>
     </div>
   </div>
+  <div v-if="!!actKeeps" v-for="k in actKeeps" :key="k.id">
+    <KeepModal :keep="k" />
+  </div>
 </template>
 
 <script>
@@ -25,7 +28,9 @@ export default {
       }
     })
     return {
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+      actKeeps: computed(() => AppState.activeKeep)
+
     }
   }
 }

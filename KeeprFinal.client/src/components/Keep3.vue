@@ -35,8 +35,8 @@ export default {
     return {
       async activateKeep() {
         try {
-          keepsService.getKeepById(props.keep.id)
-          Modal.getOrCreateInstance(document.getElementById('keep-modal')).show()
+          await keepsService.getKeepById(props.keep.id)
+          await Modal.getOrCreateInstance(document.getElementById('keep-modal')).show()
         }
         catch (error) {
           logger.log(error);

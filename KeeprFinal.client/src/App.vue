@@ -4,7 +4,9 @@
   </header>
   <main class="bg">
     <router-view />
-    <KeepModal />
+    <CreateKeepForm />
+    <CreateVaultForm />
+
   </main>
   <footer></footer>
 </template>
@@ -16,7 +18,8 @@ export default {
   name: 'App',
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      activateKeep: computed(() => AppState.activeKeep.picture)
     }
   }
 }
