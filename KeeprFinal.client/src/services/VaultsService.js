@@ -6,7 +6,7 @@ import { api } from './AxiosService'
 class VaultsService {
     //gets
     async getVaultById(id) {
-        const res = await api.get('api/vaults' + id)
+        const res = await api.get('api/vaults/' + id)
         logger.log(res.data, "got vault")
         AppState.activeVault = res.data
         // more logic for private?? tbd
