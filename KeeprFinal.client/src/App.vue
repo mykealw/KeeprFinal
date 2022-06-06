@@ -6,7 +6,6 @@
     <router-view />
     <CreateKeepForm />
     <CreateVaultForm />
-
   </main>
   <footer></footer>
 </template>

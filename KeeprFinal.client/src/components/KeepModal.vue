@@ -12,16 +12,16 @@
             <img class="object-fit rounded" :src="keep.img" :alt="keep.name" />
           </div>
           <div class="col-md-6">
-            <div class="row">
+            <div class="row my-3">
               <h4 class="text-info text-center">
-                <i class="mdi mdi-eye">{{ keep?.views }} </i>
-                <i class="mdi mdi-chevron-right-box-outline"
-                  >{{ keep.kept }}
-                </i>
-                <i class="mdi mdi-share-variant">{{ keep.shares }}</i>
+                <i class="mdi mdi-eye"></i> {{ keep?.views }}
+                <i class="mdi mdi-chevron-right-box-outline"></i>
+                {{ keep.kept }}
+
+                <i class="mdi mdi-share-variant"></i> {{ keep.shares }}
               </h4>
             </div>
-            <div class="row">
+            <div class="row my-2">
               <div class="col-md-12">
                 <h1>{{ keep.name }}</h1>
               </div>
@@ -49,7 +49,8 @@
               <div class="col-md-2">
                 <i
                   v-if="keep.creatorId == account.id"
-                  class="mdi mdi-delete mdi-36px"
+                  class="mdi mdi-delete mdi-36px action"
+                  @click="deleteKeep(keep.id)"
                 ></i>
               </div>
               <div class="col-md-4 d-flex">
@@ -75,6 +76,7 @@ import { AppState } from '../AppState.js'
 import { vaultKeepsService } from '../services/VaultKeepsService.js'
 import { logger } from '../utils/Logger.js'
 import Pop from '../utils/Pop.js'
+import { keepsService } from '../services/KeepsService.js'
 export default {
   props: {
     keep: {
@@ -91,10 +93,22 @@ export default {
       profile: computed(() => AppState.profile),
       async addToVault() {
         try {
-          debugger
+          // debugger
           let newVK = { vaultId: vaultId.value, keepId: props.keep.id, creatorId: props.account.id }
           await vaultKeepsService.createVaultKeep(newVk.value)
           vaultId.value = 0
+        }
+        catch (error) {
+          logger.log(error);
+          Pop.toast(error.message, "error");
+        }
+      },
+      async deleteKeep(keepId) {
+        try {
+          if (await Pop.confirm()) {
+            await keepsService.deleteKeep(keepId)
+
+          }
         }
         catch (error) {
           logger.log(error);
