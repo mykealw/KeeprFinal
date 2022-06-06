@@ -20,20 +20,30 @@
     <div class="row mt-2">
       <div class="col-md-12">
         <h2>
-          Vaults<i v-if="profile.id == account.id" class="mdi mdi-plus"></i>
+          Vaults<i
+            v-if="profile.id == account.id"
+            class="mdi mdi-plus"
+            @click="makeVaultModal()"
+          ></i>
         </h2>
       </div>
       <div v-for="v in vaults" :key="v.id" class="col-md-3">
-          <Vault :vault="v" />
+        <Vault :vault="v" />
       </div>
     </div>
     <div class="row mt-5">
-        <div class="col-md-12">
-            <h2>Keeps<i v-if="profile.id == account.id" class="mdi mdi-plus"></i></h2>
-        </div>
-        <div class="col-md-2" v-for="k in keeps" :key="k.id">
-            <Keep2 :keep="k" />
-        </div>
+      <div class="col-md-12">
+        <h2>
+          Keeps<i
+            v-if="profile.id == account.id"
+            class="mdi mdi-plus"
+            @click="makeKeepModal()"
+          ></i>
+        </h2>
+      </div>
+      <div class="col-md-2" v-for="k in keeps" :key="k.id">
+        <KeepP :keep="k" />
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +56,8 @@ import Pop from '../utils/Pop.js'
 import { useRoute } from 'vue-router'
 import { profilesService } from '../services/ProfilesService.js'
 import { AppState } from '../AppState.js'
+import { keepsService } from '../services/KeepsService.js'
+import { Modal } from 'bootstrap'
 export default {
   setup() {
     const route = useRoute()
@@ -63,7 +75,15 @@ export default {
       keeps: computed(() => AppState.myKeeps),
       vaults: computed(() => AppState.myVaults),
       profile: computed(() => AppState.profile),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      async makeKeepModal() {
+        try {
+          Modal.getOrCreateInstance(document.getElementById('create-keep')).show()
+        } catch (error) {
+          logger.log(error)
+          Pop.toast(error.message, "error")
+        }
+      }
     }
   }
 }

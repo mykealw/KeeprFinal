@@ -23,7 +23,7 @@
     </div>
     <div class="row">
       <div class="col-md-3" v-for="k in keeps" :key="k.id">
-        <Keep3 :keep="k" />
+        <KeepV :keep="k" />
       </div>
     </div>
   </div>

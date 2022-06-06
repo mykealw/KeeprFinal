@@ -53,7 +53,7 @@
                   @click="deleteKeep(keep.id)"
                 ></i>
               </div>
-              <div class="col-md-4 d-flex">
+              <div class="col-md-4 d-flex action" @click="goToProfile()">
                 <img
                   height="40"
                   :src="keep.creator?.picture"
@@ -77,6 +77,9 @@ import { vaultKeepsService } from '../services/VaultKeepsService.js'
 import { logger } from '../utils/Logger.js'
 import Pop from '../utils/Pop.js'
 import { keepsService } from '../services/KeepsService.js'
+import { router } from '../router.js'
+import { useRoute, useRouter } from 'vue-router'
+import { Modal } from 'bootstrap'
 export default {
   props: {
     keep: {
@@ -85,6 +88,8 @@ export default {
     },
   },
   setup(props) {
+    const router = useRouter()
+    const route = useRoute()
     const vaultId = ref({})
     return {
       vault: computed(() => AppState.myVaults),
@@ -107,13 +112,19 @@ export default {
         try {
           if (await Pop.confirm()) {
             await keepsService.deleteKeep(keepId)
-
+            Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
+            Pop.toast("deleted")
+            await vaultKeepsService.getAllVaultsKeeps(route.params.id)
           }
         }
         catch (error) {
           logger.log(error);
           Pop.toast(error.message, "error");
         }
+      },
+      goToProfile() {
+        Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
+        router.push({ name: 'Profile', params: { id: props.keep.creatorId } })
       }
     }
   }

@@ -2,7 +2,7 @@
   <div class="home container-fluid flex-grow-1">
     <div class="masonry-container1 masonry-container2">
       <div v-for="k in keeps" :key="k.id">
-        <Keep :keep="k" />
+        <KeepH :keep="k" />
       </div>
     </div>
   </div>
