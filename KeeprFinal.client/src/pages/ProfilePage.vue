@@ -1,7 +1,7 @@
 <template>
   <div class="profile container-fluid">
     <div class="row mt-2">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <label :for="profile.name" class="visually-hidden">{{
           profile.name
         }}</label>
@@ -11,7 +11,7 @@
           :alt="profile.name"
         />
       </div>
-      <div class="col-md-8">
+      <div class="col-md-9">
         <h1>{{ profile.name }}</h1>
         <h3>Vaults: {{ vaults.length }}</h3>
         <h3>Keeps: {{ keeps.length }}</h3>
@@ -23,9 +23,17 @@
           Vaults<i v-if="profile.id == account.id" class="mdi mdi-plus"></i>
         </h2>
       </div>
-      <div v-for="v in vaults" :key="v.id" class="col-md-12">
-          <img :vault="v" :src="vault.img" alt="">
+      <div v-for="v in vaults" :key="v.id" class="col-md-3">
+          <Vault :vault="v" />
       </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2>Keeps<i v-if="profile.id == account.id" class="mdi mdi-plus"></i></h2>
+        </div>
+        <div class="col-md-2" v-for="k in keeps" :key="k.id">
+            <Keep2 :keep="k" />
+        </div>
     </div>
   </div>
 </template>

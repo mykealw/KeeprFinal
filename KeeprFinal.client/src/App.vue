@@ -63,16 +63,29 @@ export default {
     bottom: 1em;
     align-items: center;
   }
+  .kt2 {
+    bottom: .5rem;
+    left: .5rem;
+  }
   .ri2 {
     height: 2em;
     max-width: 2em;
     object-fit: cover;
   }
   .pp2 {
-    object-fit: cover;
+    object-fit: contain;
     max-height: 35vh;
     width: 100%;
-
+  }
+  .k2p2 {
+    max-height: 10vh;
+    width: 100%;
+    object-fit: cover;
+  }
+  .vp2 {
+    object-fit: cover;
+    height: 20vh;
+    width: 100%;
   }
   .masonry-container2 {
     columns: 2;
@@ -94,9 +107,23 @@ export default {
     max-width: 5em;
     object-fit: cover;
   }
-  .pp1 {
+  .k2p1 {
+    max-height: 10vh;
+    width: 100%;
     object-fit: cover;
+  }
+  .kt1 {
+    bottom: .5rem;
+    left: .5rem;
+  }
+  .pp1 {
+    object-fit: contain;
     max-height: 35vh;
+    width: 100%;
+  }
+  .vp1 {
+    object-fit: cover;
+    height: 20vh;
     width: 100%;
   }
   .masonry-container1 {
