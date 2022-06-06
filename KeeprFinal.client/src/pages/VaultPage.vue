@@ -18,13 +18,13 @@
         </button>
       </div>
       <div class="col-md-12">
-          <h6>Keeps: {{keeps.length}}</h6>
+        <h6>Keeps: {{ keeps.length }}</h6>
       </div>
     </div>
     <div class="row">
-        <div class="col-md-3" v-for="k in keeps" :key="k.id">
-            <Keep3 :keep="k" /> 
-        </div>
+      <div class="col-md-3" v-for="k in keeps" :key="k.id">
+        <Keep3 :keep="k" />
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@
 
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { vaultsService } from '../services/VaultsService.js'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
@@ -41,19 +41,22 @@ import { vaultKeepsService } from '../services/VaultKeepsService.js'
 export default {
   setup() {
     const route = useRoute()
+    const router = useRouter()
     onMounted(async () => {
       try {
         await vaultsService.getVaultById(route.params.id)
         await vaultKeepsService.getAllVaultsKeeps(route.params.id)
       } catch (error) {
         logger.log(error)
-        Pop.toast(error.message, "error")
+        Pop.toast("you do not have access to this, sending you home")
+        router.push({ name: 'Home' })
       }
+
     })
     return {
       vault: computed(() => AppState.activeVault), profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
-      keeps: computed(()=> AppState.keeps),
+      keeps: computed(() => AppState.keeps),
       async deleteVault(id) {
         try {
           await vaultsService.deleteVault(id)
