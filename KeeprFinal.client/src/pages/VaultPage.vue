@@ -1,5 +1,32 @@
 <template>
-  <div class="VaultPage">YOU arrived</div>
+  <div class="VaultPage container-fluid">
+    <div class="row d-flex mt-3 ms-5">
+      <div class="col-md-3">
+        <h1>{{ vault.name }}</h1>
+      </div>
+      <div class="col-md-6">
+        <h6>{{ vault.description }}</h6>
+      </div>
+      <div class="col-md-3">
+        <button
+          type="button"
+          v-if="vault.creatorId == account.id"
+          class="btn btn-outline-secondary"
+          @click="deleteVault(vault.id)"
+        >
+          Delete Vault <i class="mdi mdi-delete"></i>
+        </button>
+      </div>
+      <div class="col-md-12">
+          <h6>Keeps: {{keeps.length}}</h6>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" v-for="k in keeps" :key="k.id">
+            <Keep3 :keep="k" /> 
+        </div>
+    </div>
+  </div>
 </template>
 
 
@@ -25,7 +52,17 @@ export default {
     })
     return {
       vault: computed(() => AppState.activeVault), profile: computed(() => AppState.profile),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      keeps: computed(()=> AppState.keeps),
+      async deleteVault(id) {
+        try {
+          await vaultsService.deleteVault(id)
+        }
+        catch (error) {
+          logger.log(error);
+          Pop.toast(error.message, "error");
+        }
+      }
 
     }
   }
