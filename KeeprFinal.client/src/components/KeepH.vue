@@ -2,7 +2,7 @@
   <div class="Keep p-2">
     <div class="position-relative">
       <img
-        class="object-fit rounded"
+        class="object-fit rounded action"
         @click="activateKeep()"
         :src="keep.img"
         :alt="keep.name"
@@ -11,7 +11,7 @@
       <div class="position-absolute w-100 d-flex rp1 rp2">
         <h4 class="ts text-light me-2">{{ keep.name }}</h4>
         <img
-          class="circle ri1 ri2"
+          class="circle ri1 ri2 crosshair"
           @click="goToProfile()"
           :src="keep.creator?.picture"
           :alt="keep.creator?.name"

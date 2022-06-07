@@ -3,7 +3,7 @@
     <div class="position-relative">
       <div class="w-100 d-flex">
         <img
-          class="kp3 rounded"
+          class="kp3 rounded action"
           @click="activateKeep()"
           :src="keep.img"
           :alt="keep.name"

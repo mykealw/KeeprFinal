@@ -12,6 +12,7 @@
           class="pp1 pp2 rounded"
           :src="profile.picture"
           :alt="profile.name"
+          :title="profile.name"
         />
       </div>
       <div class="col-md-9">

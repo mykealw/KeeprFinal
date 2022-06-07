@@ -1,7 +1,7 @@
 <template>
   <div class="vault mt-2 position-relative">
     <img
-      class="vp1 vp2 rounded"
+      class="vp1 vp2 rounded action"
       @click="goToVault()"
       :src="vault.img"
       :alt="vault.name"

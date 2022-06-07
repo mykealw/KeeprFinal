@@ -65,7 +65,9 @@ export default {
 .circle {
   border-radius: 50%;
 }
-
+.crosshair {
+  cursor: crosshair;
+}
 // mobile
 @media only screen and (max-width: 767px) {
   .rp2 {
@@ -87,6 +89,11 @@ export default {
     max-height: 35vh;
     width: 100%;
   }
+  .vp2 {
+    object-fit: cover;
+    height: 25vh;
+    width: 100%;
+  }
   .k2p2 {
     max-height: 10vh;
     width: 100%;
@@ -100,6 +107,11 @@ export default {
   .kp3 {
     max-height: 30vh;
     width: 100%;
+    object-fit: cover;
+  }
+  .vi2 {
+    height: 1em;
+    max-width: 1em;
     object-fit: cover;
   }
   .masonry-container2 {
@@ -145,6 +157,11 @@ export default {
     object-fit: cover;
     height: 20vh;
     width: 100%;
+  }
+  .vi1 {
+    height: 2em;
+    max-width: 2em;
+    object-fit: cover;
   }
   .masonry-container1 {
     columns: 4;

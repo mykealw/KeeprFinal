@@ -3,14 +3,21 @@
     <div class="position-relative">
       <div class="w-100 d-flex">
         <img
-          class="k2p1 k2p2 rounded"
+          class="vp1 vp2 rounded crosshair"
           @click="activateKeep()"
           :src="keep.img"
           :alt="keep.name"
           :title="keep.name"
         />
-        <div class="kt1 kt2 position-absolute">
+        <div class="kt1 kt2 position-absolute d-flex">
           <h5 class="ts text-light" :title="keep.name">{{ keep.name }}</h5>
+          <img
+            class="circle vi1 vi2 action ms-4"
+            @click="goToProfile()"
+            :src="keep.creator?.picture"
+            :alt="keep.creator?.name"
+            :title="keep.creator?.name"
+          />
         </div>
       </div>
     </div>
@@ -33,6 +40,7 @@ export default {
     }
   },
   setup(props) {
+    const router = useRouter()
     return {
       async activateKeep() {
         try {
@@ -43,6 +51,9 @@ export default {
           logger.log(error);
           Pop.toast(error.message, "error");
         }
+      },
+      goToProfile() {
+        router.push({ name: 'Profile', params: { id: props.keep.creatorId } })
       }
     }
   }
