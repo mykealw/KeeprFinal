@@ -24,7 +24,7 @@ class VaultKeepsService {
 
     //deletes
     async deleteVaultKeep(vaultKeepId) {
-        const res = await api.delete('api/vaultkeeps' + vaultKeepId)
+        const res = await api.delete('api/vaultkeeps/' + vaultKeepId)
         logger.log(res.data, "deleted vaultkeep")
         AppState.vaultKeeps.filter(vk => vk.id != vaultKeepId)
     }

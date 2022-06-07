@@ -18,6 +18,13 @@
             :alt="keep.creator?.name"
             :title="keep.creator?.name"
           />
+          <h5
+            v-if="vault.creatorId == account.id"
+            class="ts text-light ms-4"
+            title="remove from vault"
+          >
+            <i @click="removeFromVault()" class="mdi mdi-delete selectable"></i>
+          </h5>
         </div>
       </div>
     </div>
@@ -27,10 +34,13 @@
 
 <script>
 import { Modal } from 'bootstrap'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { logger } from '../utils/Logger.js'
 import Pop from '../utils/Pop.js'
 import { keepsService } from '../services/KeepsService.js'
+import { vaultKeepsService } from '../services/VaultKeepsService.js'
+import { computed } from '@vue/reactivity'
+import { AppState } from '../AppState.js'
 
 export default {
   props: {
@@ -41,7 +51,10 @@ export default {
   },
   setup(props) {
     const router = useRouter()
+    const route = useRoute()
     return {
+      account: computed(() => AppState.account),
+      vault: computed(()=> AppState.activeVault),
       async activateKeep() {
         try {
           await keepsService.getKeepById(props.keep.id)
@@ -54,6 +67,16 @@ export default {
       },
       goToProfile() {
         router.push({ name: 'Profile', params: { id: props.keep.creatorId } })
+      },
+      async removeFromVault() {
+        try {
+          await vaultKeepsService.deleteVaultKeep(props.keep.vaultKeepId)
+          await vaultKeepsService.getAllVaultsKeeps(route.params.id)
+        }
+        catch (error) {
+          logger.log(error);
+          Pop.toast(error.message, "error");
+        }
       }
     }
   }
