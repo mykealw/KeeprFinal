@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <div  v-for="k in keeps" :key="k.id">
+  <div v-for="k in keeps" :key="k.id">
     <KeepModal :keep="k" />
   </div>
 </template>
@@ -63,7 +63,12 @@ export default {
       activeKeep: computed(() => AppState.activeKeep),
       async deleteVault(id) {
         try {
-          await vaultsService.deleteVault(id)
+          if (await Pop.confirm()) {
+            await vaultsService.deleteVault(id)
+            router.push({ name: 'Home' })
+            Pop.toast("deleted, going home")
+          }
+
         }
         catch (error) {
           logger.log(error);

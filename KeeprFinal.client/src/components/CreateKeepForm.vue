@@ -2,6 +2,11 @@
   <Modal id="create-keep">
     <template #modal-body>
       <div class="p-4">
+        <button
+          type="button"
+          class="btn-close position-absolute close-button right top"
+          data-bs-dismiss="modal"
+        ></button>
         <h3 class="text-center">Create Keep</h3>
         <form @submit.prevent="createKeep()">
           <div class="justify-content-center">

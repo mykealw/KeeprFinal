@@ -30,7 +30,6 @@ export default {
       required: true
     }
   },
-
   setup(props) {
     return {
       async activateKeep() {

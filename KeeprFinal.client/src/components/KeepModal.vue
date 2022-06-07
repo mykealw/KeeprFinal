@@ -92,6 +92,7 @@ export default {
     const route = useRoute()
     const vaultId = ref({})
     return {
+      vaultId,
       vault: computed(() => AppState.myVaults),
       keep: computed(() => AppState.activeKeep),
       account: computed(() => AppState.account),
@@ -99,9 +100,10 @@ export default {
       async addToVault() {
         try {
           // debugger
-          let newVK = { vaultId: vaultId.value, keepId: props.keep.id, creatorId: props.account.id }
-          await vaultKeepsService.createVaultKeep(newVk.value)
+          let newVk = { vaultId: vaultId.value, keepId: AppState.activeKeep.id }
+          await vaultKeepsService.createVaultKeep(newVk)
           vaultId.value = 0
+          AppState.activeKeep = AppState.activeKeep
         }
         catch (error) {
           logger.log(error);
