@@ -20,7 +20,7 @@ class ProfilesService {
     async getProfileVaults(profileId) {
         const res = await api.get('api/profiles/' + profileId + '/vaults')
         logger.log(res.data, "profiles vaults")
-        AppState.myVaults = res.data
+        AppState.vaults = res.data
     }
 
     //posts

@@ -76,7 +76,7 @@ export default {
     })
     return {
       keeps: computed(() => AppState.myKeeps),
-      vaults: computed(() => AppState.myVaults),
+      vaults: computed(() => AppState.vaults),
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
       async makeKeepModal() {
