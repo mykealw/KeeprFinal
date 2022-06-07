@@ -12,7 +12,7 @@
             <img class="object-fit rounded" :src="keep.img" :alt="keep.name" />
           </div>
           <div class="col-md-6">
-            <div class="row my-3">
+            <div class="row my-4">
               <h4 class="text-info text-center">
                 <i class="mdi mdi-eye"></i> {{ keep?.views }}
                 <i class="mdi mdi-chevron-right-box-outline"></i>
@@ -21,17 +21,17 @@
                 <i class="mdi mdi-share-variant"></i> {{ keep.shares }}
               </h4>
             </div>
-            <div class="row my-2">
+            <div class="row my-3">
               <div class="col-md-12">
                 <h1>{{ keep.name }}</h1>
               </div>
               <div class="col-md-12">
                 <h3>{{ keep.description }}</h3>
-                <hr />
+                <hr class="my-5"/>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
+            <div class="row my-5">
+              <div class="col-md-7">
                 <select
                   name="add to vault"
                   id="add to vault"
@@ -43,10 +43,10 @@
                   </option>
                 </select>
                 <button class="btn btn-success ms-2" @click="addToVault()">
-                  add
+                  add to vault
                 </button>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-1">
                 <i
                   v-if="keep.creatorId == account.id"
                   class="mdi mdi-delete mdi-36px action"
@@ -103,7 +103,7 @@ export default {
           let newVk = { vaultId: vaultId.value, keepId: AppState.activeKeep.id }
           await vaultKeepsService.createVaultKeep(newVk)
           vaultId.value = 0
-          AppState.activeKeep = AppState.activeKeep
+          Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
         }
         catch (error) {
           logger.log(error);
@@ -126,7 +126,7 @@ export default {
       },
       goToProfile() {
         Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
-        router.push({ name: 'Profile', params: { id: props.keep.creatorId } })
+        router.push({ name: 'Profile', params: { id: AppState.activeKeep?.creator?.id } })
       }
     }
   }

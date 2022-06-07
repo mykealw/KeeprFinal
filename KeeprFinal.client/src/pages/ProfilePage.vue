@@ -46,6 +46,9 @@
       </div>
     </div>
   </div>
+  <div v-for="k in keeps" :key="k.id">
+    <KeepModal :keep="k" />
+  </div>
 </template>
 
 
@@ -79,6 +82,14 @@ export default {
       async makeKeepModal() {
         try {
           Modal.getOrCreateInstance(document.getElementById('create-keep')).show()
+        } catch (error) {
+          logger.log(error)
+          Pop.toast(error.message, "error")
+        }
+      },
+      async makeVaultModal() {
+        try {
+          Modal.getOrCreateInstance(document.getElementById('create-vault')).show()
         } catch (error) {
           logger.log(error)
           Pop.toast(error.message, "error")

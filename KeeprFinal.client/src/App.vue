@@ -58,6 +58,7 @@ export default {
   font-weight: bolder;
 }
 .object-fit {
+  max-height: 75vh;
   object-fit: cover;
   width: 100%;
 }

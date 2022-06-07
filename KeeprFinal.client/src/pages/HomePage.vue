@@ -6,7 +6,7 @@
       </div>
     </div>
   </div>
-  <div v-for="k in actKeeps" :key="k.id">
+  <div v-if="actKeeps" v-for="k in actKeeps" :key="k.id">
     <KeepModal :keep="k" />
   </div>
 </template>
