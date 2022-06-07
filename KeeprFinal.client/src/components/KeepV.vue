@@ -54,7 +54,7 @@ export default {
     const route = useRoute()
     return {
       account: computed(() => AppState.account),
-      vault: computed(()=> AppState.activeVault),
+      vault: computed(() => AppState.activeVault),
       async activateKeep() {
         try {
           await keepsService.getKeepById(props.keep.id)
@@ -70,8 +70,11 @@ export default {
       },
       async removeFromVault() {
         try {
-          await vaultKeepsService.deleteVaultKeep(props.keep.vaultKeepId)
-          await vaultKeepsService.getAllVaultsKeeps(route.params.id)
+          if (await Pop.confirm()) {
+            await vaultKeepsService.deleteVaultKeep(props.keep.vaultKeepId)
+            await vaultKeepsService.getAllVaultsKeeps(route.params.id)
+
+          }
         }
         catch (error) {
           logger.log(error);

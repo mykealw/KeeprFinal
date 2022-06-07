@@ -26,7 +26,7 @@
         <h2 title="vaults">
           Vaults<i
             v-if="profile.id == account.id"
-            class="mdi mdi-plus"
+            class="mdi mdi-plus action"
             @click="makeVaultModal()"
           ></i>
         </h2>
@@ -40,7 +40,7 @@
         <h2 title="Keeps">
           Keeps<i
             v-if="profile.id == account.id"
-            class="mdi mdi-plus"
+            class="mdi mdi-plus action"
             @click="makeKeepModal()"
           ></i>
         </h2>

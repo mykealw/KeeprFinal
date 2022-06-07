@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="row my-5">
-              <div class="col-md-7">
+              <div v-if="user.isAuthenticated" class="col-md-7">
                 <select
                   name="add to vault"
                   id="add to vault"
@@ -122,6 +122,7 @@ export default {
       keep: computed(() => AppState.activeKeep),
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
+      user: computed(() => AppState.user),
       async addToVault() {
         try {
           // debugger
