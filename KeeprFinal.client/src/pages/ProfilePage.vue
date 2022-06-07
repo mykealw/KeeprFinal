@@ -1,5 +1,5 @@
 <template>
-  <div class="profile container-fluid">
+  <div class="profile container-fluid flex-grow-1">
     <div class="row mt-2">
       <div class="col-md-3">
         <label
@@ -35,7 +35,7 @@
         <Vault :vault="v" />
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="mt-5">
       <div class="col-md-12">
         <h2 title="Keeps">
           Keeps<i
@@ -45,8 +45,11 @@
           ></i>
         </h2>
       </div>
-      <div class="col-md-2" v-for="k in keeps" :key="k.id">
-        <KeepP :keep="k" />
+
+      <div class="masonry-container1 masonry-container2">
+        <div class="" v-for="k in keeps" :key="k.id">
+          <KeepP :keep="k" />
+        </div>
       </div>
     </div>
   </div>
