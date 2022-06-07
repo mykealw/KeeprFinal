@@ -6,10 +6,11 @@
           class="k2p1 k2p2 rounded"
           @click="activateKeep()"
           :src="keep.img"
-          alt=""
+          :alt="keep.name"
+          :title="keep.name"
         />
         <div class="kt1 kt2 position-absolute">
-          <h5 class="ts text-light">{{ keep.name }}</h5>
+          <h5 class="ts text-light" :title="keep.name">{{ keep.name }}</h5>
         </div>
       </div>
     </div>

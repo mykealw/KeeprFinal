@@ -1,7 +1,12 @@
 <template>
   <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
+    <h1 :title="account.name">Welcome {{ account.name }}</h1>
+    <img
+      class="rounded"
+      :src="account.picture"
+      :alt="account.picture"
+      :title="account.name"
+    />
     <p>{{ account.email }}</p>
   </div>
   <div class="row">
@@ -48,6 +53,7 @@
           type="text"
           class="form-control"
           id="name"
+          title="name input"
           aria-describedby="helpId"
           placeholder="Name.."
           v-model="edit.name"
@@ -59,6 +65,7 @@
           type="text"
           class="form-control"
           id="name"
+          title="picture input"
           aria-describedby="picture url input"
           placeholder="picture URL..."
           v-model="edit.picture"

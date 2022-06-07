@@ -5,29 +5,39 @@
         <button
           type="button"
           class="btn-close position-absolute close-button right top"
+          title="close button"
           data-bs-dismiss="modal"
         ></button>
         <div class="row d-flex p-3">
           <div class="col-md-6">
-            <img class="object-fit rounded" :src="keep.img" :alt="keep.name" />
+            <img
+              class="object-fit rounded"
+              :src="keep.img"
+              :alt="keep.name"
+              :title="keep.name"
+            />
           </div>
           <div class="col-md-6">
             <div class="row my-4">
               <h4 class="text-info text-center">
-                <i class="mdi mdi-eye"></i> {{ keep?.views }}
-                <i class="mdi mdi-chevron-right-box-outline"></i>
+                <i class="mdi mdi-eye" title="keep views"></i> {{ keep?.views }}
+                <i
+                  class="mdi mdi-chevron-right-box-outline"
+                  title="keep kepts"
+                ></i>
                 {{ keep.kept }}
 
-                <i class="mdi mdi-share-variant"></i> {{ keep.shares }}
+                <i class="mdi mdi-share-variant" title="keep shares"></i>
+                {{ keep.shares }}
               </h4>
             </div>
             <div class="row my-3">
               <div class="col-md-12">
-                <h1>{{ keep.name }}</h1>
+                <h1 :title="keep.name">{{ keep.name }}</h1>
               </div>
               <div class="col-md-12">
-                <h3>{{ keep.description }}</h3>
-                <hr class="my-5"/>
+                <h3 :title="keep.description">{{ keep.description }}</h3>
+                <hr class="my-5" />
               </div>
             </div>
             <div class="row my-5">
@@ -37,12 +47,22 @@
                   id="add to vault"
                   v-model="vaultId"
                   placeholder="add to vault"
+                  title="add to vault"
                 >
-                  <option v-for="v in vault" :key="v.id" :value="v.id">
+                  <option
+                    v-for="v in vault"
+                    :key="v.id"
+                    :value="v.id"
+                    title="select vault"
+                  >
                     {{ v.name }}
                   </option>
                 </select>
-                <button class="btn btn-success ms-2" @click="addToVault()">
+                <button
+                  class="btn btn-success ms-2"
+                  @click="addToVault()"
+                  title="add to vault"
+                >
                   add to vault
                 </button>
               </div>
@@ -50,10 +70,15 @@
                 <i
                   v-if="keep.creatorId == account.id"
                   class="mdi mdi-delete mdi-36px action"
+                  title="delete keep"
                   @click="deleteKeep(keep.id)"
                 ></i>
               </div>
-              <div class="col-md-4 d-flex action" @click="goToProfile()">
+              <div
+                class="col-md-4 d-flex action"
+                @click="goToProfile()"
+                title="go to profile"
+              >
                 <img
                   height="40"
                   :src="keep.creator?.picture"

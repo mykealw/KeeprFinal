@@ -5,7 +5,8 @@
         class="object-fit rounded"
         @click="activateKeep()"
         :src="keep.img"
-        alt=""
+        :alt="keep.name"
+        :title="keep.name"
       />
       <div class="position-absolute w-100 d-flex rp1 rp2">
         <h4 class="ts text-light me-2">{{ keep.name }}</h4>
@@ -13,7 +14,8 @@
           class="circle ri1 ri2"
           @click="goToProfile()"
           :src="keep.creator?.picture"
-          alt=""
+          :alt="keep.creator?.name"
+          :title="keep.creator?.name"
         />
       </div>
     </div>

@@ -2,10 +2,10 @@
   <div class="VaultPage container-fluid">
     <div class="row d-flex mt-3 ms-5">
       <div class="col-md-3">
-        <h1>{{ vault.name }}</h1>
+        <h1 :title="vault.name">{{ vault.name }}</h1>
       </div>
       <div class="col-md-6">
-        <h6>{{ vault.description }}</h6>
+        <h6 :title="vault.description">{{ vault.description }}</h6>
       </div>
       <div class="col-md-3">
         <button
@@ -13,12 +13,13 @@
           v-if="vault.creatorId == account.id"
           class="btn btn-outline-secondary"
           @click="deleteVault(vault.id)"
+          title="delete vault"
         >
           Delete Vault <i class="mdi mdi-delete"></i>
         </button>
       </div>
       <div class="col-md-12">
-        <h6>Keeps: {{ keeps.length }}</h6>
+        <h6 :title="keeps.length">Keeps: {{ keeps.length }}</h6>
       </div>
     </div>
     <div class="row">

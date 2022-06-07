@@ -6,8 +6,9 @@
           type="button"
           class="btn-close position-absolute right top"
           data-bs-dismiss="modal"
+          title="close button"
         ></button>
-        <h3 class="text-center">Create Keep</h3>
+        <h3 class="text-center" title="create keep">Create Keep</h3>
         <form @submit.prevent="createKeep()">
           <div class="justify-content-center">
             <div class="row">
@@ -16,6 +17,7 @@
                 <input
                   required
                   class="w-100"
+                  title="name input"
                   v-model="edit.name"
                   maxlength="20"
                   type="text"
@@ -25,6 +27,7 @@
                 <label class="p-1" for="Keep description">Description:</label>
                 <textarea
                   required
+                  title="description input"
                   v-model="edit.description"
                   class="form-control"
                   name="ProjectDescription"
@@ -34,9 +37,15 @@
               </div>
               <div class="col-md-12 p-1">
                 <label class="p-1" for="Keep  Image"> Image URL:</label>
-                <input class="w-100" required v-model="edit.img" type="url" />
+                <input
+                  class="w-100"
+                  title="img url input"
+                  required
+                  v-model="edit.img"
+                  type="url"
+                />
               </div>
-              <button class="btn btn-success">Submit</button>
+              <button class="btn btn-success" title="submit">Submit</button>
             </div>
           </div>
         </form>

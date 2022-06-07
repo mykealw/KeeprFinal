@@ -8,6 +8,7 @@
             aria-label="logo, go home"
             src="../assets/img/keepr.png"
             height="45"
+            title="Keepr, go home!"
           />
         </div>
       </router-link>

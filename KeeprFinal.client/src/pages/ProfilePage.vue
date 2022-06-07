@@ -2,9 +2,12 @@
   <div class="profile container-fluid">
     <div class="row mt-2">
       <div class="col-md-3">
-        <label :for="profile.name" class="visually-hidden">{{
-          profile.name
-        }}</label>
+        <label
+          :for="profile.name"
+          class="visually-hidden"
+          :title="profile.name"
+          >{{ profile.name }}</label
+        >
         <img
           class="pp1 pp2 rounded"
           :src="profile.picture"
@@ -12,14 +15,14 @@
         />
       </div>
       <div class="col-md-9">
-        <h1>{{ profile.name }}</h1>
-        <h3>Vaults: {{ vaults.length }}</h3>
-        <h3>Keeps: {{ keeps.length }}</h3>
+        <h1 :title="profile.name">{{ profile.name }}</h1>
+        <h3 :title="vaults.length">Vaults: {{ vaults.length }}</h3>
+        <h3 :title="keeps.length">Keeps: {{ keeps.length }}</h3>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
-        <h2>
+        <h2 title="vaults">
           Vaults<i
             v-if="profile.id == account.id"
             class="mdi mdi-plus"
@@ -33,7 +36,7 @@
     </div>
     <div class="row mt-5">
       <div class="col-md-12">
-        <h2>
+        <h2 title="Keeps">
           Keeps<i
             v-if="profile.id == account.id"
             class="mdi mdi-plus"

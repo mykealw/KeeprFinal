@@ -7,12 +7,12 @@
           class="btn-close position-absolute right top"
           data-bs-dismiss="modal"
         ></button>
-        <h3 class="text-center">Create Vault</h3>
+        <h3 class="text-center" title="create vault">Create Vault</h3>
         <form @submit.prevent="createVault()">
           <div class="justify-content-center">
             <div class="row">
               <div class="col-md-12 p-1">
-                <label class="p-1" for="Vault Name">Name:</label>
+                <label class="p-1" for="Vault Name" title="name input">Name:</label>
                 <input
                   required
                   class="w-100"
@@ -22,7 +22,7 @@
                 />
               </div>
               <div class="col-md-12 p-1">
-                <label class="p-1" for="Vault description">Description:</label>
+                <label class="p-1" for="Vault description" title="description input">Description:</label>
                 <textarea
                   required
                   v-model="edit.description"
@@ -41,14 +41,15 @@
                   type="checkbox"
                   v-model="edit.isPrivate"
                   id="isPrivate"
+                  title="is private input"
                 />
               </div>
 
               <div class="col-md-12 p-1">
-                <label class="p-1" for="Vault  Image"> Image URL:</label>
+                <label class="p-1" for="Vault  Image" title="url input"> Image URL:</label>
                 <input class="w-100" required v-model="edit.img" type="url" />
               </div>
-              <button class="btn btn-success">Submit</button>
+              <button class="btn btn-success" title="submit">Submit</button>
             </div>
           </div>
         </form>

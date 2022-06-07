@@ -12,6 +12,7 @@
       "
       @click="login"
       v-if="!user.isAuthenticated"
+      title="log in"
     >
       Login
     </button>
