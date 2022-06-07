@@ -4,7 +4,7 @@
       <div class="p-4">
         <button
           type="button"
-          class="btn-close position-absolute close-button right top"
+          class="btn-close position-absolute right top"
           data-bs-dismiss="modal"
         ></button>
         <h3 class="text-center">Create Keep</h3>
@@ -34,7 +34,7 @@
               </div>
               <div class="col-md-12 p-1">
                 <label class="p-1" for="Keep  Image"> Image URL:</label>
-                <input class="w-100" required v-model="edit.img" type="text" />
+                <input class="w-100" required v-model="edit.img" type="url" />
               </div>
               <button class="btn btn-success">Submit</button>
             </div>
