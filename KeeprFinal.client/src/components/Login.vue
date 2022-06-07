@@ -43,6 +43,12 @@
           </div>
         </router-link>
         <div
+          class="list-group-item list-group-item-action hoverable"
+          @click="goToProfile()"
+        >
+          Go to Profile
+        </div>
+        <div
           class="list-group-item list-group-item-action hoverable text-danger"
           @click="logout"
         >
@@ -59,8 +65,10 @@
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
 import { AuthService } from "../services/AuthService";
+import { useRouter } from 'vue-router';
 export default {
   setup() {
+    const router = useRouter()
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
@@ -70,6 +78,9 @@ export default {
       async logout() {
         AuthService.logout({ returnTo: window.location.origin });
       },
+      goToProfile() {
+        router.push({ name: 'Profile', params: { id: AppState.account.id } })
+      }
     };
   },
 };
