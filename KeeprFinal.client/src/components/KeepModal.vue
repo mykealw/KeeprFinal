@@ -142,7 +142,7 @@ export default {
             await keepsService.deleteKeep(keepId)
             Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
             Pop.toast("deleted")
-            await vaultKeepsService.getAllVaultsKeeps(route.params.id)
+            AppState.keeps = AppState.keeps.filter(k => k.id != k.id)
           }
         }
         catch (error) {

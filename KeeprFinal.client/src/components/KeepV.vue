@@ -10,7 +10,7 @@
           :title="keep.name"
         />
         <div class="kt1 kt2 position-absolute d-flex">
-          <h5 class="ts text-light" :title="keep.name">{{ keep.name }}</h5>
+          <h5 class="ts text-light action" :title="keep.name" @click.stop="activateKeep()">{{ keep.name }}</h5>
           <img
             class="circle vi1 vi2 action ms-4"
             @click="goToProfile()"

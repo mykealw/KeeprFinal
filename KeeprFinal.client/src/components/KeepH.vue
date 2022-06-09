@@ -9,7 +9,7 @@
         :title="keep.name"
       />
       <div class="position-absolute w-100 d-flex rp1 rp2">
-        <h4 class="ts text-light me-2">{{ keep.name }}</h4>
+        <h4 class="ts text-light me-2 action" @click.stop="activateKeep()">{{ keep.name }}</h4>
         <img
           class="circle ri1 ri2 crosshair"
           @click="goToProfile()"

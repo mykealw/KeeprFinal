@@ -10,7 +10,7 @@
           :title="keep.name"
         />
         <div class="kt1 kt2 position-absolute">
-          <h5 class="ts text-light" :title="keep.name">{{ keep.name }}</h5>
+          <h5 class="ts text-light action" @click.stop="activateKeep()" :title="keep.name">{{ keep.name }}</h5>
         </div>
       </div>
     </div>
