@@ -143,6 +143,7 @@ export default {
             Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
             Pop.toast("deleted")
             AppState.keeps = AppState.keeps.filter(k => k.id != k.id)
+            router.push({ name: 'Home' })
           }
         }
         catch (error) {
