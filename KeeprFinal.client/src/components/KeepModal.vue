@@ -142,8 +142,8 @@ export default {
             await keepsService.deleteKeep(keepId)
             Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
             Pop.toast("deleted")
-            AppState.keeps = AppState.keeps.filter(k => k.id != k.id)
-            router.push({ name: 'Home' })
+            AppState.keeps = AppState.keeps.filter(k => k.id !== keepId)
+            // router.push({ name: 'Home' })
           }
         }
         catch (error) {
